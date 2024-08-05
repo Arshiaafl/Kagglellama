@@ -1,9 +1,15 @@
+import os
 from flask import Flask, request, render_template_string
 from kaggle.api.kaggle_api_extended import KaggleApi
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 
 app = Flask(__name__)
+
+def setup_kaggle_api():
+    api = KaggleApi()
+    api.authenticate()
+    return api
 
 # Initialize Kaggle API
 class SearchAgent:
